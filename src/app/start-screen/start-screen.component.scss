@@ -13,6 +13,7 @@
     flex-direction: column;
     height: auto;
     width: 85%;
+    max-height: 100%;
     aspect-ratio: 1/1;
     border: 2vw solid goldenrod;
     border-radius: 1em;
@@ -42,7 +43,7 @@
       filter: drop-shadow(5px 5px 5px);
 
       &:hover {
-        filter: contrast(1.2);
+        filter: contrast(1.25);
         cursor: pointer;
       }
   
