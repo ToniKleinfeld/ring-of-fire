@@ -1,0 +1,36 @@
+@use '../app.component.scss' as main;
+
+.playground {
+    width: 100dvw;
+    height: 100dvh;
+    max-width: 100%;
+    background-image: url('/assets/img/vintagebg.webp');
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    @include main.center();
+
+    .card-stack {
+        position: relative;
+        width: 11em;
+        height: 16em;
+        
+        img{
+            position: absolute;
+            width: 10em;
+        }
+    }
+
+    .top-card {
+        cursor: pointer;
+        transition: all 100ms ease-in-out;
+        &:hover {
+            transform: scale(1.1) translateY(-20px) translateX(-20px);
+        }
+    }
+}
+
+.pick-card {
+    transition: all 125ms ease-in-out;
+    transform: scale(1.5) !important;
+}
