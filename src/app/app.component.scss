@@ -1,5 +1,6 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+@mixin center($d:flex ,$jc:center ,$ai:center ,$g:0){
+    display: $d;
+    justify-content: $jc;
+    align-items: $ai;
+    gap: $g;
 }
