@@ -1,12 +1,15 @@
 <section class="playground">
 
   <div class="card-stack">
-    <img *ngFor="let c of [1,2,3,4];let i = index;" [ngStyle]="{'right.px': i * 3, 'bottom.px' : i *3}" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside">
 
+    <!-- Hidden Card stack -->
+    <img *ngFor="let c of [1,2,3,4];let i = index;" [ngStyle]="{'right.px': i * 3, 'bottom.px' : i *3}" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside">
     <img style="right: 12px ;bottom: 12px;" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside" class="top-card" (click)="takeCard()">
 
+    <!-- Stack for played cards -->
     <img *ngFor="let card of game?.playedCard; let i = index" class="played-cards" src="/assets/img/cards/{{ card }}.png" alt="" [ngStyle]="{'right.px': 32 + i , 'bottom.px' : 32 + i}">
 
+    <!-- Current card (animationend) -->
     <img [ngStyle]="{'right.px': drawnCards, 'bottom.px' : drawnCards }"  src="/assets/img/cards/{{currentCard}}.png" alt="shown a cand from backside" class="pick-card" (click)="takeCard()" *ngIf="pickCardAnimation" >
   </div>  
 
@@ -15,6 +18,6 @@
 <!-- <img style="right: 32px ;bottom: 32px;" src="/assets/img/cards/ace_1.png" alt="shown a cand from backside" class="top-card pickCardAnimation" (click)="takeCard()" 
 [class.pick-card]="pickCardAnimation"> -->
 
-<!-- old code only for remeber what is possible -->
+<!-- old code only for remember what is possible -->
 
 
