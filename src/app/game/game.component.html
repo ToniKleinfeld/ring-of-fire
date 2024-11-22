@@ -2,9 +2,16 @@
 
   <div class="card-stack">
     <img *ngFor="let c of [1,2,3,4];let i = index;" [ngStyle]="{'right.px': i * 3, 'bottom.px' : i *3}" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside">
-    <img style="right: 12px ;bottom: 12px;" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside" class="top-card" (click)="takeCard()" 
-    [class.pick-card]="pickCardAnimation">
+
+    <img style="right: 12px ;bottom: 12px;" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside" class="top-card" (click)="takeCard()">
+
+    <img style="right: 32px ;bottom: 32px;" src="/assets/img/cards/ace_1.png" alt="shown a cand from backside" class="pick-card" (click)="takeCard()" *ngIf="pickCardAnimation">
 
   </div>  
 
 </section>
+
+<!-- <img style="right: 32px ;bottom: 32px;" src="/assets/img/cards/ace_1.png" alt="shown a cand from backside" class="top-card pickCardAnimation" (click)="takeCard()" 
+[class.pick-card]="pickCardAnimation"> -->
+
+<!-- old code only for remeber what is possible -->

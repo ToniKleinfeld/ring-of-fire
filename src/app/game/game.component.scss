@@ -12,12 +12,12 @@
 
     .card-stack {
         position: relative;
-        width: 11em;
-        height: 16em;
+        width: 8em;
+        height: 11em;
         
         img{
             position: absolute;
-            width: 10em;
+            width: 7em;
         }
     }
 
@@ -32,5 +32,21 @@
 
 .pick-card {
     transition: all 125ms ease-in-out;
-    transform: scale(1.5) !important;
+    animation: pick-card-animation 1s ease-in-out;
+    transform: scale(1) translateX(140px) translateY(-180px) rotate(15deg) ;
+}
+
+@keyframes pick-card-animation {
+    0% {
+        transform: scale(1) ;
+    }
+    40%{
+        transform: scale(1.7);
+    }
+    60% {
+        transform: scale(1.7) rotate(9deg) ;
+    }
+    100% {
+        transform: scale(1.1) translateX(140px) translateY(-180px) rotate(15deg) ;
+    }
 }
