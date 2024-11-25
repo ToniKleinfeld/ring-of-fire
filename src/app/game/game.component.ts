@@ -18,7 +18,7 @@ interface GameObject {
 })
 
 export class GameComponent {
-
+  colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
 
    pickCardAnimation:boolean = false; 
    game?:GameObject;

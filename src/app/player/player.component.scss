@@ -3,7 +3,6 @@
 section {
     @include main.center($jc:flex-start);
     width: 200px;
-    background-color: lightblue;
     border-radius: 100px 0 0 100px;
     padding: 2%;
     border: 2px  solid black;
