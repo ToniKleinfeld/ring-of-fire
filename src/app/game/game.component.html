@@ -1,5 +1,7 @@
 <section class="playground">
 
+  <app-player *ngFor="let players of game?.players;let i = index" class="player-list" [ngStyle]="{'top.px': (100 * i)+150}"></app-player>
+
   <div class="card-stack">
 
     <!-- Hidden Card stack -->

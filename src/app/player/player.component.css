@@ -1,0 +1,13 @@
+section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+  width: 200px;
+}
+section img {
+  aspect-ratio: 1/1;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 30px;
+}/*# sourceMappingURL=player.component.css.map */

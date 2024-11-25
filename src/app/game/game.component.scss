@@ -10,6 +10,11 @@
     background-repeat: no-repeat;
     @include main.center();
 
+    .player-list{
+        position: absolute;
+        right: 0;
+    }
+
     .card-stack {
         position: relative;
         width: 8em;

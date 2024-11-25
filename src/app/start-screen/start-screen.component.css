@@ -1,0 +1,68 @@
+.start-screen {
+  height: 100dvh;
+  width: 100dvw;
+  font-family: "Caprasimo";
+  background-color: #404040;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.start-screen > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  flex-direction: column;
+  height: auto;
+  width: 85%;
+  max-height: 90vw;
+  max-width: 90vh;
+  aspect-ratio: 1/1;
+  border: 2vw solid goldenrod;
+  border-radius: 1em;
+  background-color: darkred;
+  position: relative;
+}
+.start-screen > div > h1 {
+  position: absolute;
+  top: 13%;
+  font-size: 7vw;
+  -webkit-text-stroke: 1px black;
+  -webkit-text-fill-color: goldenrod;
+}
+.start-screen > div .cardhand {
+  aspect-ratio: 1/1;
+  width: 80%;
+  height: auto;
+  filter: drop-shadow(5px 5px 5px);
+}
+.start-screen > div .ribbon {
+  position: absolute;
+  width: 95%;
+  height: auto;
+  bottom: 8%;
+  filter: drop-shadow(5px 5px 5px);
+}
+.start-screen > div .ribbon:hover {
+  filter: contrast(1.25);
+  cursor: pointer;
+}
+.start-screen > div .Lets,
+.start-screen > div .Start {
+  position: absolute;
+  font-size: 4.7dvw;
+  font-weight: 400;
+  bottom: 30.5%;
+  -webkit-text-stroke: 1px black;
+  -webkit-text-fill-color: whitesmoke;
+  text-shadow: 2px 2px 2px;
+}
+.start-screen > div .Lets {
+  transform: rotate(-16deg);
+  left: 22%;
+}
+.start-screen > div .Start {
+  transform: rotate(16deg);
+  right: 20%;
+}/*# sourceMappingURL=start-screen.component.css.map */

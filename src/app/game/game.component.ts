@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, numberAttribute} from '@angular/core';
 import { Game } from '../../models/game';
+import { PlayerComponent } from "../player/player.component";
 
 interface GameObject {
     readonly players: string[],
@@ -11,7 +12,7 @@ interface GameObject {
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PlayerComponent,PlayerComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })

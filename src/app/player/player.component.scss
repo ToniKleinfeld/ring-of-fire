@@ -1,0 +1,25 @@
+@use '../app.component.scss' as main;
+
+section {
+    @include main.center($jc:flex-start);
+    width: 200px;
+    background-color: lightblue;
+    border-radius: 100px 0 0 100px;
+    padding: 2%;
+    border: 2px  solid black;
+    border-right: none;
+
+    img {
+        aspect-ratio: 1/1;
+        width: 60px;
+        border-radius: 50%;
+        margin-right: 30px;
+        border: 2px solid black;
+    }
+
+    span{
+        font-family: "Caprasimo";
+        font-weight: 400;
+        font-size: 24px;
+    }
+}
