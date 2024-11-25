@@ -46,7 +46,7 @@ export class GameComponent {
 
 
   takeCard(){
-    if (!this.pickCardAnimation && this.game && this.CurrentPlayers > 0) {
+    if (!this.pickCardAnimation && this.game && this.CurrentPlayers > 1) {
       this.currentCard = this.game.stack.pop();         
       this.pickCardAnimation = true; 
       

@@ -12,5 +12,6 @@ export class PlayerComponent {
 
   @Input() name?:string;
   @Input() bgc?:string;
+  @Input() playerActive:boolean = false;
 
 }
