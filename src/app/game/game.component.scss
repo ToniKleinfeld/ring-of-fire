@@ -33,6 +33,13 @@
             transform: scale(1.1) translateY(-20px) translateX(-20px);
         }
     }
+
+    .btn-add{
+        position: absolute;
+        right: 32px;
+        bottom: 32px;
+        background-color: goldenrod;
+    }
 }
 
 .played-cards{
