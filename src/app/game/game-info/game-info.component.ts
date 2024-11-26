@@ -1,11 +1,10 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
-import { GameComponent } from '../game.component';
 
 @Component({
   selector: 'app-game-info',
   standalone: true,
-  imports: [MatCardModule,GameComponent],
+  imports: [MatCardModule],
   templateUrl: './game-info.component.html',
   styleUrl: './game-info.component.scss'
 })
@@ -22,12 +21,12 @@ export class GameInfoComponent {
     { title: 'Thumbmaster', description: '' },
     { title: 'Men', description: 'All men drink.' },
     { title: 'Quizmaster', description: '' },
-    { title: 'Never have i ever...', description: 'Say something you nnever did. Everyone who did it has to drink.' },
+    { title: 'Never have i ever...', description: 'Say something you never did. Everyone who did it has to drink.' },
     { title: 'Rule', description: 'Make a rule. Everyone needs to drink when he breaks the rule.' },
   ];
 
-  title:string = 'Here comes the title of card.';
-  description:string = 'Here comes , what you must do.';
+  title:string = '';
+  description:string = '';
 
   @Input() card?:string;
 

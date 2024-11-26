@@ -3,7 +3,7 @@
 .start-screen {
   height: 100dvh;
   width: 100dvw;
-  font-family: "Caprasimo";
+  font-family: "Caprasimo" !important;
 
   background-color: #404040;
 
@@ -22,11 +22,27 @@
     position: relative;
 
     > h1 {
+      font: 700 90px "Caprasimo";
       position: absolute;
       top: 13%;
-      font-size: 7vw;
       -webkit-text-stroke: 1px black;
       -webkit-text-fill-color: goldenrod;
+      margin: 0;
+
+      @media only screen and (max-width:750px) {   
+        font: 700 50px "Caprasimo" ;
+      }
+
+      @media only screen and (max-width:490px) {   
+        font: 700 32px "Caprasimo" ;
+      }
+
+      @media only screen and (max-height:750px) {   
+        font: 700 50px "Caprasimo" ;
+      }
+      @media only screen and (max-height:490px) {   
+        font: 700 32px "Caprasimo" ;
+      }
     }
 
     .cardhand {
@@ -49,26 +65,6 @@
       }
   
     }
-
-    .Lets,
-    .Start {
-      position: absolute;
-      font-size: 4.7dvw; 
-      font-weight: 400;
-      bottom: 30.5%;
-      -webkit-text-stroke: 1px black;
-      -webkit-text-fill-color: whitesmoke;
-      text-shadow: 2px 2px 2px;
-    }
-
-    .Lets {
-      transform: rotate(-16deg);
-      left: 22%;
-    }
-
-    .Start {
-      transform: rotate(16deg);
-      right: 20%;
-    }
   }
 }
+

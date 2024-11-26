@@ -29,6 +29,7 @@ interface GameObject {
 
 export class GameComponent {
   constructor(public dialog: MatDialog) {};
+  
   colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
 
    pickCardAnimation:boolean = false; 
@@ -45,14 +46,16 @@ export class GameComponent {
     this.game = new Game()
   }
 
-
   takeCard(){
     if (!this.pickCardAnimation && this.game && this.CurrentPlayers > 1) {
       this.currentCard = this.game.stack.pop();         
-      this.pickCardAnimation = true; 
+      this.pickCardAnimation = true;       
       
       setTimeout(() => {
-        this.game?.playedCard.push(this.returnString(this.currentCard));
+        this.game!.currentPlayer++
+        this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length;
+        
+        this.game!.playedCard.push(this.returnString(this.currentCard));
         this.drawnCards = this.returnNumberOfDrawnCards();
         this.pickCardAnimation = false;},1500
       )
@@ -93,6 +96,5 @@ export class GameComponent {
         this.CurrentPlayers = this.returnNumberOfPlayer()
       }      
     });
-  }
-  
+  }  
 }

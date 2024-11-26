@@ -2,12 +2,12 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>
-                {{title}}
+                {{ card ? title : 'Please add a minimum of 2 Player'}}
             </mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
-            {{description}}
+            {{card ? description : 'Pick a card from stack, when you want start the game.'}}
         </mat-card-content>
     </mat-card>
 </section>
