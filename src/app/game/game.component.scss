@@ -40,6 +40,13 @@
         bottom: 32px;
         background-color: goldenrod;
     }
+
+    .pin-bottom {
+        position: absolute;
+        bottom: 7dvh;
+        right: 10dvw;
+        left: 10dvw;
+    }
 }
 
 .played-cards{
