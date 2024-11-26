@@ -6,14 +6,14 @@
   <div class="card-stack">
 
     <!-- Hidden Card stack -->
-    <img *ngFor="let c of [1,2,3,4];let i = index;" [ngStyle]="{'right.px': i * 3, 'bottom.px' : i *3}" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside">
-    <img style="right: 12px ;bottom: 12px;" src="/assets/img/cards/card_cover.png" alt="shown a cand from backside" class="top-card" (click)="takeCard()">
+    <img *ngFor="let c of [1,2,3,4];let i = index;" [ngStyle]="{'right.px': i * 3, 'bottom.px' : i *3}" src="./assets/img/cards/card_cover.png" alt="shown a cand from backside">
+    <img style="right: 12px ;bottom: 12px;" src="./assets/img/cards/card_cover.png" alt="shown a cand from backside" class="top-card" (click)="takeCard()">
 
     <!-- Stack for played cards -->
-    <img *ngFor="let card of game?.playedCard; let i = index" class="played-cards" src="/assets/img/cards/{{ card }}.png" alt="" [ngStyle]="{'right.px': 32 + i , 'bottom.px' : 32 + i}">
+    <img *ngFor="let card of game?.playedCard; let i = index" class="played-cards" src="./assets/img/cards/{{ card }}.png" alt="" [ngStyle]="{'right.px': 32 + i , 'bottom.px' : 32 + i}">
 
     <!-- Current card (animationend) -->
-    <img [ngStyle]="{'right.px': drawnCards, 'bottom.px' : drawnCards }"  src="/assets/img/cards/{{currentCard}}.png" alt="shown a cand from backside" class="pick-card" (click)="takeCard()" *ngIf="pickCardAnimation" >
+    <img [ngStyle]="{'right.px': drawnCards, 'bottom.px' : drawnCards }"  src="./assets/img/cards/{{currentCard}}.png" alt="shown a cand from backside" class="pick-card" (click)="takeCard()" *ngIf="pickCardAnimation" >
   </div>  
 
   <!-- Gaminfo -->
