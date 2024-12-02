@@ -3,13 +3,6 @@ import { Firestore, collection, doc , collectionData , onSnapshot, addDoc, updat
 import { Observable } from 'rxjs';
 import { Game } from '../../models/game';
 
-interface GameObject {
-  id?:string,
-  readonly players: string[],
-  stack:string[],
-  playedCard:string[],
-  currentPlayer:number,
-}
 @Injectable({
   providedIn: 'root'
 })
