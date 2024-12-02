@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Ring-Of-Fire": {
+    "ring-of-fire": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
