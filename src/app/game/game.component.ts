@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, numberAttribute} from '@angular/core';
+import { Component, numberAttribute, Injectable, inject, OnDestroy } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from "../player/player.component";
 import { MatButtonModule} from '@angular/material/button';
@@ -10,7 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../player/dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from './game-info/game-info.component';
-
+import { GameService } from "../firebase-service/game.service";
 
 
 interface GameObject {
@@ -28,15 +28,15 @@ interface GameObject {
 })
 
 export class GameComponent {
-  constructor(public dialog: MatDialog) {};
-  
+  constructor(public dialog: MatDialog, private noteService: GameService) {};
+
   colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
 
-   pickCardAnimation:boolean = false; 
-   game?:GameObject;
-   currentCard?:string;
-   drawnCards:number = this.returnNumberOfDrawnCards();
-   CurrentPlayers:number = 0;
+  pickCardAnimation:boolean = false; 
+  game?:GameObject;
+  currentCard?:string;
+  drawnCards:number = this.returnNumberOfDrawnCards();
+  CurrentPlayers:number = 0;
   
    ngOnInit(){
     this.newGame()
