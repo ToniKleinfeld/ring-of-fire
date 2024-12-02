@@ -10,22 +10,13 @@ export class GameService {
   firestore: Firestore = inject(Firestore);
 
   unsubGame;
-  // items$;
-  // items;
 
   constructor() {
     this.unsubGame = this.subGameList();
-
-    // this.items$ = collectionData(this.getGamesRef())
-    // this.items = this.items$.subscribe((list) => {
-    //   list.forEach(element => {
-    //     console.log(element)
-    //   });
-    // });
    }
 
   ngonDestroy(){
-    // this.unsubGame()
+    this.unsubGame()
   }
 
   subGameList(){
@@ -39,5 +30,9 @@ export class GameService {
 
   getGamesRef(){ 
     return collection(this.firestore, 'games') 
+  }
+
+  async addToGame(content:object){
+    await addDoc(this.getGamesRef(),content)
   }
 }

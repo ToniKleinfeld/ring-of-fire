@@ -43,7 +43,8 @@ export class GameComponent {
    }
 
   newGame(){
-    this.game = new Game()
+    this.game = new Game();
+    // this.noteService.addToGame({"hello":"world"})
   }
 
   takeCard(){
