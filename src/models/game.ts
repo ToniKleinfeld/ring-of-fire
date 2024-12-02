@@ -1,4 +1,5 @@
 export class Game {
+    id?:string;
     public players: string[] = [];
     public stack: string[] = [];
     public playedCard: string[] = [];
