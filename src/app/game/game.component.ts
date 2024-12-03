@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, numberAttribute, Injectable, inject, OnDestroy } from '@angular/core';
+import { Component, numberAttribute, Injectable, inject, OnDestroy, OnInit  } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from "../player/player.component";
 import { MatButtonModule} from '@angular/material/button';
@@ -11,6 +11,7 @@ import {
 import { DialogAddPlayerComponent } from '../player/dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from './game-info/game-info.component';
 import { GameService } from "../firebase-service/game.service";
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -21,8 +22,10 @@ import { GameService } from "../firebase-service/game.service";
   styleUrl: './game.component.scss'
 })
 
-export class GameComponent {
-  constructor(public dialog: MatDialog, private noteService: GameService) {};
+export class GameComponent implements OnInit {
+
+  constructor(public dialog: MatDialog, private gameService: GameService, private route:ActivatedRoute) {
+  };
 
   colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
 
@@ -31,15 +34,22 @@ export class GameComponent {
   currentCard?:string;
   drawnCards:number = this.returnNumberOfDrawnCards();
   CurrentPlayers:number = 0;
+  adress?:string;
   
-   ngOnInit(){
-    this.newGame()
+  ngOnInit(){
+    this.newGame();
+    this.getParam();
+  }
+
+   getParam():any{
+    // this.route.params.subscribe((params) => {
+    //   this.adress = params['id'];
+      
+    // })  
    }
 
   newGame(){
-    this.game = new Game();
-    // this.noteService.addToGame({"hello":"world"})
-    console.log(this.game)
+    this.game = new Game();  
   }
 
   takeCard(){
@@ -93,4 +103,15 @@ export class GameComponent {
       }      
     });
   }  
+
+  uploadGame(){
+    let game:Game = {
+      players: this.game?.players || [],
+      stack: this.game?.stack || [],
+      playedCard: this.game?.playedCard || [],
+      currentPlayer: this.game?.currentPlayer || 0,
+    } 
+
+    this.gameService.addToFireBase(game);
+  }
 }

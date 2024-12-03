@@ -2,42 +2,47 @@ import { Injectable, inject, OnDestroy } from '@angular/core';
 import { Firestore, collection, doc , collectionData , onSnapshot, addDoc, updateDoc, deleteDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Game } from '../../models/game';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class GameService {
 
-  firestore: Firestore = inject(Firestore);
-
+  firestore: Firestore = inject(Firestore);  
   unsubGame;
+  adressID = 'games';
+   
 
   constructor() {
-    this.unsubGame = this.subGameList();
-   }
+    this.unsubGame = this.subGameList();      
+  }  
 
   ngonDestroy(){
     this.unsubGame()
   }
 
-  subGameList(){
-    
+  getGamesRef(){ 
+    console.log(this.adressID)
+    return collection(this.firestore, this.adressID) 
+  }
+
+  subGameList(){  
+    console.log(this.adressID)
     return onSnapshot(this.getGamesRef(), (list) => {
         list.forEach(game => {
-          console.log(this.setGameObject(game.data(),game.id))
+          console.log(this.setGameObject(game.data(),game.id));
+          console.log(this.adressID,game.id)
         });
       });
   }
-
-  getGamesRef(){ 
-    return collection(this.firestore, 'games') 
-  }
-
-  async addToGame(content:object){
+  
+  async addToFireBase(content:Game){
     await addDoc(this.getGamesRef(),content)
   }
 
-  setGameObject(obj:any, id:string):Game {
+  setGameObject(obj:any, id?:string):Game {
     return {
       id: id,
       players: obj.players || [],
@@ -47,4 +52,15 @@ export class GameService {
     }
   }
 
-}
+  // loadParamGame(paramsID:string) {
+  //   return collection(this.firestore,paramsID)
+  // }
+
+  // subParamGame(paramsID:string){
+  //   return onSnapshot(this.loadParamGame(paramsID), (game) => 
+  //     console.log(this.setGameObject(game),paramsID)
+  //   )
+  //   }
+    
+
+  }
