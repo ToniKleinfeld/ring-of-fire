@@ -42,10 +42,10 @@ export class GameComponent implements OnInit {
   }
 
    getParam():any{
-    // this.route.params.subscribe((params) => {
-    //   this.adress = params['id'];
-      
-    // })  
+    this.route.params.subscribe((params) => {
+      this.adress = params['id'];
+      this.gameService.adressID = this.adress!
+    })  
    }
 
   newGame(){
