@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, numberAttribute, Injectable, inject, OnDestroy, OnInit  } from '@angular/core';
+import { Component, numberAttribute, Injectable, inject, OnDestroy } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from "../player/player.component";
 import { MatButtonModule} from '@angular/material/button';
@@ -22,9 +22,12 @@ import { ActivatedRoute } from "@angular/router";
   styleUrl: './game.component.scss'
 })
 
-export class GameComponent implements OnInit {
+export class GameComponent {
 
   constructor(public dialog: MatDialog, private gameService: GameService, private route:ActivatedRoute) {
+    this.getParam();
+    
+    
   };
 
   colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
@@ -37,19 +40,24 @@ export class GameComponent implements OnInit {
   adress?:string;
   
   ngOnInit(){
-    this.newGame();
-    this.getParam();
+    this.newGame()
+
   }
 
-   getParam():any{
-    this.route.params.subscribe((params) => {
+  getParam():any{
+    return this.route.params.subscribe((params) => {
       this.adress = params['id'];
-      this.gameService.adressID = this.adress!
+      console.log(params['id']);        
     })  
-   }
+  }
 
   newGame(){
-    this.game = new Game();  
+    this.game = new Game();
+    setTimeout(() => {
+      let currentGame = this.gameService.savedGames[0];
+      this.game = currentGame;
+      console.log(this.game)
+    }, 3000);    
   }
 
   takeCard(){
@@ -104,14 +112,4 @@ export class GameComponent implements OnInit {
     });
   }  
 
-  uploadGame(){
-    let game:Game = {
-      players: this.game?.players || [],
-      stack: this.game?.stack || [],
-      playedCard: this.game?.playedCard || [],
-      currentPlayer: this.game?.currentPlayer || 0,
-    } 
-
-    this.gameService.addToFireBase(game);
-  }
 }

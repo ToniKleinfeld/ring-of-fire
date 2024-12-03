@@ -2,7 +2,9 @@ import { Injectable, inject, OnDestroy } from '@angular/core';
 import { Firestore, collection, doc , collectionData , onSnapshot, addDoc, updateDoc, deleteDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Game } from '../../models/game';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +12,13 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 
 export class GameService {
 
+  savedGames:any[] = []
+
   firestore: Firestore = inject(Firestore);  
   unsubGame;
-  adressID = 'games';
-   
+  adressID = 'games';   
 
-  constructor() {
+  constructor(private router: Router) {
     this.unsubGame = this.subGameList();      
   }  
 
@@ -24,22 +27,24 @@ export class GameService {
   }
 
   getGamesRef(){ 
-    console.log(this.adressID)
     return collection(this.firestore, this.adressID) 
   }
 
   subGameList(){  
-    console.log(this.adressID)
     return onSnapshot(this.getGamesRef(), (list) => {
+      this.savedGames = [];
         list.forEach(game => {
-          console.log(this.setGameObject(game.data(),game.id));
-          console.log(this.adressID,game.id)
+          this.savedGames.push(this.setGameObject(game.data(),game.id));
         });
+
+        console.log(this.savedGames)
       });
   }
   
-  async addToFireBase(content:Game){
-    await addDoc(this.getGamesRef(),content)
+  async addToFireBase(content:Game|object){
+    await addDoc(this.getGamesRef(),content).then((gameInfo:any)=>{
+      this.router.navigateByUrl('/game/'+gameInfo['id'])
+    });
   }
 
   setGameObject(obj:any, id?:string):Game {
@@ -52,15 +57,26 @@ export class GameService {
     }
   }
 
-  // loadParamGame(paramsID:string) {
-  //   return collection(this.firestore,paramsID)
-  // }
+  async updateGame(game: Game){
+    if (game.id) {
+      let item =  this.getCleanJson(game);
+      await updateDoc(this.getSingleDocRef(game.id),item).catch(
+        (err) => {console.error(err)}
+      )
+    }
+  }
 
-  // subParamGame(paramsID:string){
-  //   return onSnapshot(this.loadParamGame(paramsID), (game) => 
-  //     console.log(this.setGameObject(game),paramsID)
-  //   )
-  //   }
-    
+  getCleanJson(game:Game):{} {
+    return {
+      players: game.players,
+      stack: game.stack,
+      playedCard: game.playedCard,
+      currentPlayer: game.currentPlayer,
+    }
+  }
+
+  getSingleDocRef( docID:string){
+    return doc(collection(this.firestore, this.adressID), docID)
+  }
 
   }

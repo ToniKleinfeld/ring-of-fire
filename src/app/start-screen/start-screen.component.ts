@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { GameService } from "../firebase-service/game.service";
+import { Game } from '../../models/game';
 
 @Component({
   selector: 'app-start-screen',
@@ -10,11 +12,21 @@ import { Router } from '@angular/router';
 })
 export class StartScreenComponent {
 
-  constructor( private router: Router) {}
+  constructor( private router: Router,private gameService: GameService) {}
+
+  game:Game = new Game();
 
   newGame() {
     //Start Game
-    this.router.navigateByUrl('/game')
+    
+    let game:Game = {
+      players: this.game?.players || [],
+      stack: this.game?.stack || [],
+      playedCard: this.game?.playedCard || [],
+      currentPlayer: this.game?.currentPlayer || 0,
+    } 
+  
+    this.gameService.addToFireBase(game);       
   }
 
 }
