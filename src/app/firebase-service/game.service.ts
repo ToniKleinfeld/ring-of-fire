@@ -36,8 +36,6 @@ export class GameService {
         list.forEach(game => {
           this.savedGames.push(this.setGameObject(game.data(),game.id));
         });
-
-        console.log(this.savedGames)
       });
   }
   

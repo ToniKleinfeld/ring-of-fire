@@ -42,7 +42,6 @@ export class GameComponent {
   ngOnInit(){
     setTimeout(() => {
       this.getParam();
-      console.log(this.adress)
       this.newGame();  
     }, 500);      
   }
@@ -56,8 +55,7 @@ export class GameComponent {
   newGame(){
       let currentGame = this.filterSavedGames();
       this.CurrentPlayers = currentGame.players.length 
-      this.game = currentGame;
-      console.log(this.game)      
+      this.game = currentGame;    
   }
 
   filterSavedGames(){  
