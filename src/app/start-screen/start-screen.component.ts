@@ -25,7 +25,7 @@ export class StartScreenComponent {
       playedCard: this.game?.playedCard || [],
       currentPlayer: this.game?.currentPlayer || 0,
       pickCardAnimation: this.game?.pickCardAnimation || false,
-      
+      currentCard: this.game?.currentCard || ''
     } 
   
     this.gameService.addToFireBase(game);       

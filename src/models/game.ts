@@ -5,7 +5,7 @@ export class Game {
     public playedCard: string[] = [];
     public currentPlayer:number = 0;
     public pickCardAnimation:boolean = false; 
-    public currentCard?:string;
+    public currentCard:string = '';
 
     constructor(){ 
         for(let i = 1; i < 14; i++) {

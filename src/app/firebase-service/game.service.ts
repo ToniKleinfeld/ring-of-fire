@@ -30,7 +30,7 @@ export class GameService {
     return collection(this.firestore, this.adressID) 
   }
 
-  subGameList(){  
+  subGameList(){ 
     return onSnapshot(this.getGamesRef(), (list) => {
       this.savedGames = [];
         list.forEach(game => {
@@ -55,7 +55,7 @@ export class GameService {
       playedCard: obj.playedCard || [],
       currentPlayer: obj.currentPlayer || 0,
       pickCardAnimation: obj.pickCardAnimation || false,
-      currentCard: obj.currentCard
+      currentCard: obj.currentCard || ''
     }
   }
 
