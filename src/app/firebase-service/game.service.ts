@@ -44,7 +44,9 @@ export class GameService {
   async addToFireBase(content:Game|object){
     await addDoc(this.getGamesRef(),content).then((gameInfo:any)=>{
       this.router.navigateByUrl('/game/'+gameInfo['id'])
-    });
+    }).catch(
+      (err) => {console.error(err)}
+    );
   }
 
   setGameObject(obj:any, id?:string):Game {

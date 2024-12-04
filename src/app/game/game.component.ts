@@ -40,24 +40,34 @@ export class GameComponent {
   adress?:string;
   
   ngOnInit(){
-    this.newGame()
-
+    setTimeout(() => {
+      this.getParam();
+      console.log(this.adress)
+      this.newGame();  
+    }, 500);      
   }
 
   getParam():any{
     return this.route.params.subscribe((params) => {
-      this.adress = params['id'];
-      console.log(params['id']);        
-    })  
+      this.adress = params['id']       
+    }); 
   }
 
   newGame(){
-    this.game = new Game();
-    setTimeout(() => {
-      let currentGame = this.gameService.savedGames[0];
+      let currentGame = this.filterSavedGames();
+      this.CurrentPlayers = currentGame.players.length 
       this.game = currentGame;
-      console.log(this.game)
-    }, 3000);    
+      console.log(this.game)      
+  }
+
+  filterSavedGames(){  
+    let game = new Game  
+      this.gameService.savedGames.forEach(element => {
+        if (element.id == this.adress) {
+          game = element;
+        }
+      });  
+      return game
   }
 
   takeCard(){
@@ -71,7 +81,9 @@ export class GameComponent {
         
         this.game!.playedCard.push(this.returnString(this.currentCard));
         this.drawnCards = this.returnNumberOfDrawnCards();
-        this.pickCardAnimation = false;},1500
+        this.pickCardAnimation = false;
+        this.gameService.updateGame(this.game!);
+      },1500
       )
     }  
   }
@@ -108,6 +120,7 @@ export class GameComponent {
       if (name && this.CurrentPlayers < 8) {
         this.game?.players.push(name);
         this.CurrentPlayers = this.returnNumberOfPlayer()
+        this.gameService.updateGame(this.game!);
       }      
     });
   }  
