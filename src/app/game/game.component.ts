@@ -51,19 +51,20 @@ export class GameComponent {
   }
 
   newGame(){
-      let currentGame = this.filterSavedGames();
+      let currentGame = this.gameService.savedGames[this.filterSavedGames()] ;
       this.CurrentPlayers = currentGame.players.length 
       this.game = currentGame;    
   }
 
-  filterSavedGames(){  
-    let game = new Game  
-      this.gameService.savedGames.forEach(element => {
+  filterSavedGames():number{  
+    let gameID = 0 
+      this.gameService.savedGames.forEach((element,id) => {
+        
         if (element.id == this.adress) {
-          game = element;
+          gameID = id;
         }
       });  
-      return game
+      return gameID
   }
 
   takeCard(){
