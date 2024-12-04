@@ -54,6 +54,8 @@ export class GameService {
       stack: obj.stack || [],
       playedCard: obj.playedCard || [],
       currentPlayer: obj.currentPlayer || 0,
+      pickCardAnimation: obj.pickCardAnimation || false,
+      currentCard: obj.currentCard
     }
   }
 
@@ -72,6 +74,8 @@ export class GameService {
       stack: game.stack,
       playedCard: game.playedCard,
       currentPlayer: game.currentPlayer,
+      pickCardAnimation: game.pickCardAnimation,
+      currentCard: game.currentCard
     }
   }
 

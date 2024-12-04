@@ -32,9 +32,7 @@ export class GameComponent {
 
   colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
 
-  pickCardAnimation:boolean = false; 
-  game?:Game;
-  currentCard?:string;
+  game?:Game ;
   drawnCards:number = this.returnNumberOfDrawnCards();
   CurrentPlayers:number = 0;
   adress?:string;
@@ -43,7 +41,7 @@ export class GameComponent {
     setTimeout(() => {
       this.getParam();
       this.newGame();  
-    }, 500);      
+    }, 300);      
   }
 
   getParam():any{
@@ -69,17 +67,18 @@ export class GameComponent {
   }
 
   takeCard(){
-    if (!this.pickCardAnimation && this.game && this.CurrentPlayers > 1) {
-      this.currentCard = this.game.stack.pop();         
-      this.pickCardAnimation = true;       
+    if (!this.game?.pickCardAnimation && this.game && this.CurrentPlayers > 1) {
+      this.game.currentCard = this.game.stack.pop();         
+      this.game.pickCardAnimation = true;
+      this.gameService.updateGame(this.game!);     
       
       setTimeout(() => {
         this.game!.currentPlayer++
         this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length;
         
-        this.game!.playedCard.push(this.returnString(this.currentCard));
+        this.game!.playedCard.push(this.returnString(this.game?.currentCard));
         this.drawnCards = this.returnNumberOfDrawnCards();
-        this.pickCardAnimation = false;
+        this.game!.pickCardAnimation = false;
         this.gameService.updateGame(this.game!);
       },1500
       )

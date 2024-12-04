@@ -13,11 +13,11 @@
     <img *ngFor="let card of game?.playedCard; let i = index" class="played-cards" src="./assets/img/cards/{{ card }}.png" alt="" [ngStyle]="{'right.px': 32 + i , 'bottom.px' : 32 + i}">
 
     <!-- Current card (animationend) -->
-    <img [ngStyle]="{'right.px': drawnCards, 'bottom.px' : drawnCards }"  src="./assets/img/cards/{{currentCard}}.png" alt="shown a cand from backside" class="pick-card" (click)="takeCard()" *ngIf="pickCardAnimation" >
+    <img [ngStyle]="{'right.px': drawnCards, 'bottom.px' : drawnCards }"  src="./assets/img/cards/{{game?.currentCard}}.png" alt="shown a cand from backside" class="pick-card" (click)="takeCard()" *ngIf="game?.pickCardAnimation" >
   </div>  
 
   <!-- Gaminfo -->
-  <app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
+  <app-game-info [card]="game?.currentCard" class="pin-bottom"></app-game-info>
 
   <!-- Add Player -->
   <button mat-fab color="primary" class="btn-add" (click)="openDialog()" >
