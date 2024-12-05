@@ -40,8 +40,14 @@ export class GameComponent {
   ngOnInit(){
     setTimeout(() => {
       this.getParam();
-      this.newGame();  
-    }, 300);      
+      this.newGame();
+
+      
+    }, 300);    
+    
+    this.gameService.saveGameSubject.subscribe((game) => {
+      this.game = this.gameService.savedGames[this.filterSavedGames()]
+    })
   }
 
   getParam():any{

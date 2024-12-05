@@ -1,6 +1,6 @@
 import { Injectable, inject, OnDestroy } from '@angular/core';
 import { Firestore, collection, doc , collectionData , onSnapshot, addDoc, updateDoc, deleteDoc} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../../models/game';
 import { Router } from '@angular/router';
 
@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 
-export class GameService {
+export class GameService implements OnDestroy{
 
   savedGames:any[] = []
+
+  saveGameSubject: BehaviorSubject<any> = new BehaviorSubject([]);
 
   firestore: Firestore = inject(Firestore);  
   unsubGame;
@@ -22,7 +24,7 @@ export class GameService {
     this.unsubGame = this.subGameList();      
   }  
 
-  ngonDestroy(){
+  ngOnDestroy(){
     this.unsubGame()
   }
 
@@ -36,6 +38,7 @@ export class GameService {
         list.forEach(game => {
           this.savedGames.push(this.setGameObject(game.data(),game.id));
         });
+        this.saveGameSubject.next(this.savedGames);
       });
   }
   
@@ -83,4 +86,4 @@ export class GameService {
     return doc(collection(this.firestore, this.adressID), docID)
   }
 
-  }
+}
