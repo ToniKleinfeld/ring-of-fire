@@ -59,7 +59,8 @@ export class GameComponent {
   newGame(){
       let currentGame = this.gameService.savedGames[this.filterSavedGames()] ;
       this.CurrentPlayers = currentGame.players.length 
-      this.game = currentGame;    
+      this.game = currentGame;  
+      console.log(this.game)  
   }
 
   filterSavedGames():number{  
@@ -75,6 +76,7 @@ export class GameComponent {
 
   takeCard(){
     if (!this.game?.pickCardAnimation && this.game && this.CurrentPlayers > 1) {
+      this.resetGame()
       this.game.currentCard = this.game.stack.pop() || '';         
       this.game.pickCardAnimation = true;
       this.gameService.updateGame(this.game!);     
@@ -90,6 +92,18 @@ export class GameComponent {
       },1500
       )
     }  
+  }
+
+  resetGame(){
+    if (this.game?.stack.length == 0) {
+      let playersArray:string[] = [];
+      let id = this.game.id;
+      this.game.players.forEach(player => {playersArray.push(player)});
+      this.game = new Game()
+      playersArray.forEach(player => {this.game!.players.push(player)});
+      this.game.id = id;
+      this.gameService.updateGame(this.game!);
+    }
   }
 
   returnString(element:string|undefined):string{
