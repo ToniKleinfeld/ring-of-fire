@@ -2,30 +2,44 @@
 
 section {
     @include main.center($jc:flex-start);
-    width: 200px;
-    border-radius: 100px 0 0 100px;
+    flex-direction: row-reverse;
+    width: 170px;
+    border-radius: 0 100px 100px 0;
     padding: 2%;
     border: 2px  solid black;
-    border-right: none;
+    border-left: none;
+    @media(max-width:435px) {
+        width: 100px;   
+       }
 
     img {
         aspect-ratio: 1/1;
-        width: 40px;
+        width: 45px;
         border-radius: 50%;
-        margin-right: 30px;
+        margin-left: 25px;
         border: 2px solid black;
+        @media(max-width:435px) {
+            width: 30px;   
+            margin-left: 5px;
+           }
     }
 
     span{
         font-family: "Caprasimo";
         font-weight: 400;
-        font-size: 24px;
+        font-size: 20px;
+        @media(max-width:435px) {
+         font-size: 14px;   
+        }
     }
 
 }
 
 .player-active {
-    width: 250px;
+    width: 210px;
     transition: ease-in-out;
     background-color: red !important;
+    @media(max-width:435px) {
+        width: 110px;  
+       }
 }

@@ -1,7 +1,7 @@
 <section class="playground">
 
   <!-- Player Names -->
-  <app-player *ngFor="let players of game?.players;let i = index" class="player-list" [ngStyle]="{'top.px': (80 * i)+150}" [name]="players" [bgc]="colors[i]" [playerActive]="i == game?.currentPlayer" ></app-player>
+  <app-player *ngFor="let players of game?.players;let i = index" class="player-list" [ngStyle]="{'top.%': (7 * i)+5}" [name]="players" [bgc]="colors[i]" [playerActive]="i == game?.currentPlayer" ></app-player>
 
   <div class="card-stack">
 

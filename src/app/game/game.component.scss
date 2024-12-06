@@ -11,10 +11,10 @@
     @include main.center();
 
     .player-list{
-        position: absolute;
-        right: 0;
+        position: absolute;        
+        left: 0;
     }
-
+ 
     .card-stack {
         position: relative;
         width: 8em;
@@ -39,12 +39,15 @@
         right: 32px;
         bottom: 32px;
         background-color: goldenrod;
+        @media(max-width:500px ) {
+           bottom: 45dvh; 
+        }
     }
 
     .pin-bottom {
         position: absolute;
         bottom: 7dvh;
-        right: 10dvw;
+        right: 12dvw;
         left: 10dvw;
     }
 }
