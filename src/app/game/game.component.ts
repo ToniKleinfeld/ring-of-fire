@@ -59,8 +59,7 @@ export class GameComponent {
   newGame(){
       let currentGame = this.gameService.savedGames[this.filterSavedGames()] ;
       this.CurrentPlayers = currentGame.players.length 
-      this.game = currentGame;  
-      console.log(this.game)  
+      this.game = currentGame;    
   }
 
   filterSavedGames():number{  
