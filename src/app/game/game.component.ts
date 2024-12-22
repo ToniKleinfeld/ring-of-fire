@@ -130,6 +130,9 @@ export class GameComponent {
   }
 
   openDialog(): void {
+    const buttonElement = document.activeElement as HTMLElement; // Get the currently focused element
+    buttonElement.blur(); // Remove focus from the button
+    
     const dialogRef = this.dialog.open(DialogAddPlayerComponent)
 
     dialogRef.afterClosed().subscribe(name => {
