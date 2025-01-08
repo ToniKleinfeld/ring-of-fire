@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, numberAttribute, Injectable, inject, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from "../player/player.component";
 import { MatButtonModule} from '@angular/material/button';
@@ -22,7 +22,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrl: './game.component.scss'
 })
 
-export class GameComponent {
+export class GameComponent implements OnInit{
 
   constructor(public dialog: MatDialog, private gameService: GameService, private route:ActivatedRoute) {
     this.getParam();
