@@ -26,8 +26,8 @@ export class GameComponent implements OnInit{
 
   constructor(public dialog: MatDialog, private gameService: GameService, private route:ActivatedRoute) {
     this.getParam();
-    
-    
+
+
   };
 
   colors:string[] = ['rgb(221, 106, 106)', 'rgb(231, 171, 58)', 'rgb(228, 228, 46)', 'rgb(49, 224, 49)', 'rgb(187, 236, 252)', 'rgb(150, 102, 150)','rgb(247, 191, 200)', 'rgb(135, 243, 135)'];
@@ -36,15 +36,15 @@ export class GameComponent implements OnInit{
   drawnCards:number = this.returnNumberOfDrawnCards();
   CurrentPlayers:number = 0;
   adress?:string;
-  
+
   ngOnInit(){
     setTimeout(() => {
       this.getParam();
       this.newGame();
 
-      
-    }, 300);    
-    
+
+    }, 300);
+
     this.gameService.saveGameSubject.subscribe((game) => {
       this.game = this.gameService.savedGames[this.filterSavedGames()]
     })
@@ -52,45 +52,45 @@ export class GameComponent implements OnInit{
 
   getParam():any{
     return this.route.params.subscribe((params) => {
-      this.adress = params['id']       
-    }); 
+      this.adress = params['id']
+    });
   }
 
   newGame(){
       let currentGame = this.gameService.savedGames[this.filterSavedGames()] ;
-      this.CurrentPlayers = currentGame.players.length 
-      this.game = currentGame;    
+      this.CurrentPlayers = currentGame.players.length
+      this.game = currentGame;
   }
 
-  filterSavedGames():number{  
-    let gameID = 0 
+  filterSavedGames():number{
+    let gameID = 0
       this.gameService.savedGames.forEach((element,id) => {
-        
+
         if (element.id == this.adress) {
           gameID = id;
         }
-      });  
+      });
       return gameID
   }
 
   takeCard(){
     if (!this.game?.pickCardAnimation && this.game && this.CurrentPlayers > 1) {
       this.resetGame()
-      this.game.currentCard = this.game.stack.pop() || '';         
+      this.game.currentCard = this.game.stack.pop() || '';
       this.game.pickCardAnimation = true;
-      this.gameService.updateGame(this.game!);     
-      
+      this.gameService.updateGame(this.game!);
+
       setTimeout(() => {
         this.game!.currentPlayer++
         this.game!.currentPlayer = this.game!.currentPlayer % this.game!.players.length;
-        
+
         this.game!.playedCard.push(this.returnString(this.game?.currentCard));
         this.drawnCards = this.returnNumberOfDrawnCards();
         this.game!.pickCardAnimation = false;
         this.gameService.updateGame(this.game!);
       },1500
       )
-    }  
+    }
   }
 
   resetGame(){
@@ -111,11 +111,11 @@ export class GameComponent implements OnInit{
     } else {
       return 'card_empty'
     }
-  }  
+  }
 
   returnNumberOfDrawnCards():number {
     if (this.game) {
-      return this.game.playedCard.length + 32;      
+      return this.game.playedCard.length + 32;
     } else {
       return 32
     }
@@ -126,13 +126,13 @@ export class GameComponent implements OnInit{
       return this.game.players.length;
     } else {
       return 0;
-    }    
+    }
   }
 
   openDialog(): void {
     const buttonElement = document.activeElement as HTMLElement; // Get the currently focused element
     buttonElement.blur(); // Remove focus from the button
-    
+
     const dialogRef = this.dialog.open(DialogAddPlayerComponent)
 
     dialogRef.afterClosed().subscribe(name => {
@@ -141,8 +141,8 @@ export class GameComponent implements OnInit{
         this.game?.players.push(name);
         this.CurrentPlayers = this.returnNumberOfPlayer()
         this.gameService.updateGame(this.game!);
-      }      
+      }
     });
-  }  
+  }
 
 }
